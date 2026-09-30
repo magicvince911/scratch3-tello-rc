@@ -126,6 +126,8 @@ class TelloProcessor {
     const cmd = `rc ${leftRight} ${forwardBack} ${upDown} ${yaw}`;
     const msg = Buffer.from(cmd);
 
+    console.log(`[Tello RC] ENVOI: ${cmd}`);
+
     this.client.send(
         msg,
         0,
