@@ -1236,5 +1236,18 @@ class Scratch3Tello {
     agz () {
         return this.state.agz;
     }
+    rc (args) {
+    const leftRight = Math.max(-100, Math.min(100, Cast.toNumber(args.LR)));
+    const forwardBack = Math.max(-100, Math.min(100, Cast.toNumber(args.FB)));
+    const upDown = Math.max(-100, Math.min(100, Cast.toNumber(args.UD)));
+    const yaw = Math.max(-100, Math.min(100, Cast.toNumber(args.YAW)));
+
+    this.telloProcessor.sendRC(
+        leftRight,
+        forwardBack,
+        upDown,
+        yaw
+    );
+}
 }
 module.exports = Scratch3Tello;
