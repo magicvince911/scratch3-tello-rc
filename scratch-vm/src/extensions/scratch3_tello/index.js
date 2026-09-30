@@ -544,7 +544,30 @@ class Scratch3Tello {
     /**
      * @returns {object} metadata for this extension and its blocks.
      */
-    getInfo () {
+    getInfo () 
+    {
+    opcode: 'rc',
+    text: 'RC gauche/droite [LR] avant/arrière [FB] haut/bas [UD] rotation [YAW]',
+    blockType: BlockType.COMMAND,
+    arguments: {
+        LR: {
+            type: ArgumentType.NUMBER,
+            defaultValue: 0
+        },
+        FB: {
+            type: ArgumentType.NUMBER,
+            defaultValue: 0
+        },
+        UD: {
+            type: ArgumentType.NUMBER,
+            defaultValue: 0
+        },
+        YAW: {
+            type: ArgumentType.NUMBER,
+            defaultValue: 0
+        }
+    }
+}{
         const currentLocale = formatMessage.setup().locale;
         if (Object.keys(message).filter((key) => {return currentLocale in message[key]}).length > 0) {
             this.locale = currentLocale;
