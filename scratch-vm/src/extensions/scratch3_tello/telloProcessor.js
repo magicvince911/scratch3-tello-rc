@@ -1,21 +1,5 @@
 const dgram = require('dgram');
-sendRC (leftRight, forwardBack, upDown, yaw) {
-    const cmd = `rc ${leftRight} ${forwardBack} ${upDown} ${yaw}`;
-    const msg = Buffer.from(cmd);
 
-    this.client.send(
-        msg,
-        0,
-        msg.length,
-        8889,
-        '192.168.10.1',
-        err => {
-            if (err) {
-                console.error(`[Tello RC] Send error: ${err.message}`);
-            }
-        }
-    );
-}
 class TelloProcessor {
     initialize () {
         this.queue = []; // command queue
@@ -138,6 +122,23 @@ class TelloProcessor {
         this.flying = false;
         this.executing = false;
     }
+    sendRC (leftRight, forwardBack, upDown, yaw) {
+    const cmd = `rc ${leftRight} ${forwardBack} ${upDown} ${yaw}`;
+    const msg = Buffer.from(cmd);
+
+    this.client.send(
+        msg,
+        0,
+        msg.length,
+        8889,
+        '192.168.10.1',
+        err => {
+            if (err) {
+                console.error(`[Tello RC] Send error: ${err.message}`);
+            }
+        }
+    );
+}
 }
 
 module.exports = TelloProcessor;
