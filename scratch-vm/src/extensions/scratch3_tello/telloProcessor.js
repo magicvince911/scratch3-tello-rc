@@ -122,7 +122,12 @@ class TelloProcessor {
         this.flying = false;
         this.executing = false;
     }
-    sendRC (leftRight, forwardBack, upDown, yaw) {
+   sendRC (leftRight, forwardBack, upDown, yaw) {
+    if (!this.flying) {
+        console.log('[Tello RC] RC ignoré : Tello au sol');
+        return;
+    }
+
     const cmd = `rc ${leftRight} ${forwardBack} ${upDown} ${yaw}`;
     const msg = Buffer.from(cmd);
 
